@@ -3,32 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 13:34:32 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 19:55:08 by vphongph         ###   ########.fr       */
+/*   Created: 2016/11/04 12:45:16 by sclolus           #+#    #+#             */
+/*   Updated: 2016/12/21 00:30:32 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_atoi(const char *str)
 {
-	int					s;
-	unsigned long long	nb;
+	unsigned int	nbr;
+	int				is_neg;
 
-	nb = 0;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
+	nbr = 0;
+	is_neg = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+			|| *str == '\v' || *str == '\r' || *str == '\f')
 		str++;
-	if ((s = (*str == '-') ? -1 : 1) == -1 || *str == '+')
+	if (*str == '-')
+	{
+		is_neg = 1;
 		str++;
-	while (*str >= '0' && *str <= '9')
-		nb = nb * 10 - '0' + (unsigned long long)*str++;
-	if (nb > 9223372036854775807ULL && s == 1)
-		return (-1);
-	if (nb > 9223372036854775808ULL && s == -1)
-		return (0);
-	return ((int)nb * s);
+	}
+	else if (*str == '+')
+		str++;
+	while (*str && *str >= '0' && *str <= '9')
+		nbr = nbr * 10 + *str++ - '0';
+	if (is_neg)
+		return (-nbr);
+	return (nbr);
 }
-
-/*
-** ATTENTION INITIALISER SES VARIABLES SINON INDETER, ET BOOM
-*/

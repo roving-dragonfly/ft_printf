@@ -6,19 +6,20 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/18 23:11:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/05/30 17:20:29 by aalvesph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <i386/endian.h>
+/* # include <i386/endian.h> */
 
 /*
 **___________________________PORTABILITY PROTECTION_____________________________
 */
 
-# if BYTE_ORDER == LITTLE_ENDIAN
+/* # if BYTE_ORDER == LITTLE_ENDIAN */
+# if 1
 
 /*
 **_________________________COLORS_(ESCAPE SEQUENCES)____________________________
@@ -50,7 +51,7 @@
 */
 
 #  include <stdlib.h>
-
+#  include <stdint.h>
 /*
 **_________________________________STRUCTURES___________________________________
 */

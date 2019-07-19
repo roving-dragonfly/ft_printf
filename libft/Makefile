@@ -1,110 +1,130 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/04/18 20:02:33 by vphongph         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME= libft.a
+CC= gcc
+FLAGS= -Wall -Wextra -Werror -g3 # -fsanitize=address # -fsanitize-blacklist=blacklist.txt
+SRC=	 ft_pow.c \
+		ft_atoi.c \
+		ft_atohu.c \
+		ft_atohu_base.c \
+		ft_atou.c \
+		ft_atou_base.c \
+		ft_atollu.c \
+		ft_atoll.c \
+		ft_atollu_base.c \
+		ft_bzero.c \
+		ft_isalnum.c \
+		ft_isalpha.c \
+		ft_isascii.c \
+		ft_isdigit.c \
+		ft_isprint.c \
+		ft_itoa.c \
+		ft_lstadd.c \
+		ft_lstdel.c \
+		ft_lstdelone.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		ft_lstnew.c \
+		ft_memalloc.c \
+		ft_memccpy.c \
+		ft_memchr.c \
+		ft_memcmp.c \
+		ft_memcpy.c \
+		ft_memdel.c \
+		ft_memmove.c \
+		ft_memset.c \
+		ft_putchar.c \
+		ft_putchar_fd.c \
+		ft_putendl.c \
+		ft_putendl_fd.c \
+		ft_putnbr.c \
+		ft_putnbr_fd.c \
+		ft_putstr.c \
+		ft_putstr_fd.c \
+		ft_strcat.c \
+		ft_strchr.c \
+		ft_strclr.c \
+		ft_strcmp.c \
+		ft_strcpy.c \
+		ft_strdel.c \
+		ft_strdup.c \
+		ft_strequ.c \
+		ft_striter.c \
+		ft_striteri.c \
+		ft_strjoin.c \
+		ft_strlcat.c \
+		ft_strlen.c \
+		ft_strmap.c \
+		ft_strmapi.c \
+		ft_strncat.c \
+		ft_strncmp.c \
+		ft_strncpy.c \
+		ft_strnequ.c \
+		ft_strnew.c \
+		ft_strnstr.c \
+		ft_strrchr.c \
+		ft_strsplit.c \
+		ft_strstr.c \
+		ft_strsub.c \
+		ft_strtrim.c \
+		ft_tolower.c \
+		ft_toupper.c \
+		ft_max.c \
+		ft_distance.c \
+		ft_strchr_index.c \
+		ft_log2.c \
+		ft_get_endianness.c \
+		ft_is_power_of_two.c \
+		ft_lsttotab.c \
+		get_next_line.c \
+		ft_lstlen.c \
+		ft_print_page.c \
+		ft_random.c \
+		ft_sort.c \
+		ft_strreplace.c \
+		ft_strjoin_f.c \
+		get_next_line.c \
+		ft_get_cancer.c \
+		ft_strndup.c \
+		ft_static_put.c \
+		ft_static_put_fd.c \
+		ft_t_string_concat.c \
+		ft_t_string_expand.c \
+		ft_t_string_new.c \
+		ft_t_string_concat_len.c \
+		ft_implode_strings.c \
+		ft_sort_strings.c \
+		ft_error.c \
+		ft_error_exit.c \
+		ft_t_string_free.c \
+		ft_get_file_content.c \
+		ft_mem_block_push_back_elem.c \
+		ft_create_mem_block.c \
+		ft_ulltoa.c \
+		ft_static_ulltoa.c \
+		ft_static_ulltoa_base.c \
+		ft_static_lltoa.c \
+		ft_getopt.c \
+		swap_int32.c \
+		swap_int16.c \
+		swap_int64.c \
+		left_rotate_32.c \
+		left_rotate_64.c \
+		right_rotate_32.c \
+		right_rotate_64.c
 
-blink			= 	"\033[5:m"
-purple_dark		= 	"\033[38;5;62m"
-purple			= 	"\033[38;5;98m"
-green			= 	"\033[38;5;70m"
-green_dark		= 	"\033[38;5;28m"
-red				= 	"\033[38;5;196m"
-red_dark		= 	"\033[38;5;88m"
-grey			=	"\033[38;5;242m"
-yellow			= 	"\033[38;5;178m"
-reset			= 	"\033[0m"
+OBJ= $(SRC:.c=.o)
+HDR_PATH= includes
+all: $(NAME)
 
-NAME		=	libft.a
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
-CC			=	gcc
+%.o: %.c
+	$(CC) $(FLAGS) $< -I $(HDR_PATH) -c -o $@
 
-ifeq ($(DEBUG), yes)
-	CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address,undefined
-else ifeq ($(DEBUG), all)
-	CFLAGS	=	-g3 -Weverything
-else ifeq ($(DEBUG), san)
-	CFLAGS	=	-Wall -Wextra -g3 -fsanitize=address,undefined
-else
-	CFLAGS	=	-Wall -Wextra -Werror
-endif
+clean:
+	rm -f $(OBJ)
 
-SRCS		=	ft_memalloc.c		\
-				ft_memdel.c			\
-				ft_memjoin.c		\
-				ft_memjoinfree_l.c	\
-				ft_memcpy_v2.c		\
-				ft_strlen_v2.c		\
-				ft_putstr_fd_v2.c	\
-				ft_putstr_v2.c		\
-				ft_bzero_v2.c		\
-				ft_strsub_v2.c		\
-				ft_dlstnew.c		\
-				ft_dlstdelone.c		\
-				ft_dlstadd.c		\
-				ft_atoi.c			\
-				ft_memset.c			\
-				ft_strlen_v3.c		\
-				ft_itoa.c			\
-				mth_pow_int.c		\
-				ft_printbin.c		\
-				ft_putnbr_base.c	\
-				detectchar.c		\
-				lf_get_exponent.c	\
-				lf_set_exponent.c	\
-				lf_set_nan_inf.c	\
-				lf_check_nupi.c		\
-				lf_remove_decimal.c	\
-				ft_putnnbr_base.c	
+fclean: clean
+	rm -f $(NAME)
 
-
-OBJS		=	$(SRCS:.c=.o)
-
-HDRS		=	libft.h
-
-
-.PHONY	:	all clean fclean re
-
-
-all	:	$(NAME)
-
-
-$(NAME)	:	$(OBJS)
-		@ar r $(NAME) $(OBJS) 2>/dev/null
-		@echo $(purple_dark)" Making lib" $(purple)"-> $@"$(reset)
-		@ranlib $(NAME)
-		@echo $(purple_dark)" Indexing lib"$(reset)
-ifeq ($(DEBUG), yes)
-		@echo " $(CFLAGS)"$(reset)
-		@echo $(red)$(blink)" DEBUG"$(reset) $(yellow)"MODE $(NAME)"$(reset)
-else
-		@echo " $(CFLAGS)"$(reset)
-		@echo $(yellow)" NORMAL MODE $(NAME)"$(reset)
-endif
-
-
-%.o		:	%.c $(HDRS)
-ifneq ($(firstword $(MAKECMDGOALS)), re)
-		@echo $(purple)" NEW" $?
-endif
-		@$(CC) $(CFLAGS) -c $< -o $@
-		@echo $(purple_dark)"  compiling" $(grey)$< $(purple_dark)"->" $(grey)$@$(reset)
-
-
-clean	:
-		@/bin/rm -f $(OBJS)
-		@echo $(red_dark)" Removing objects from" $(grey)$(NAME)$(reset)
-
-
-fclean	:	clean
-		@/bin/rm -f $(NAME)
-		@echo $(red_dark)" Removing lib" $(grey)$(NAME)$(reset)
-
-
-re		:	fclean all
+re: fclean all

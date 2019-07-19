@@ -13,7 +13,6 @@
     fied, or is greater than the size of the array, the array must contain a terminating null byte.
 *** p
     The void * pointer argument is printed in hexadecimal (as if by %#x or %#lx).
-
 *** d,i
     The int argument is converted to signed decimal notation.  The precision, if any, gives  the  minimum
     number  of digits that must appear; if the converted value requires fewer digits, it is padded on the

@@ -6,12 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/03 04:11:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:22:30 by aalvesph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <i386/limits.h>
+#include <limits.h>
 
 /*
 ** __Protection__

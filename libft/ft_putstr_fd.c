@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_internals.h                              :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalves <aalves@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 04:25:16 by aalves            #+#    #+#             */
-/*   Updated: 2019/05/29 04:25:21 by aalves           ###   ########.fr       */
+/*   Created: 2016/11/05 16:07:34 by sclolus           #+#    #+#             */
+/*   Updated: 2016/11/07 11:48:43 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_INTERNALS_H
- #define FT_PRINTF_INTERNALS_H
+#include "libft.h"
+#include <unistd.h>
 
-
-#endif
+void	ft_putstr_fd(char const *s, int fd)
+{
+	if (s)
+		write(fd, s, ft_strlen((char*)s));
+}

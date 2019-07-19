@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 14:03:34 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 19:31:51 by vphongph         ###   ########.fr       */
+/*   Created: 2016/11/04 11:34:38 by sclolus           #+#    #+#             */
+/*   Updated: 2017/05/28 04:07:06 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t i;
+	unsigned int	i;
+	unsigned char	tmp_c;
+	unsigned long	*longword_ptr;
+	unsigned long	magicbit;
 
 	i = 0;
+	tmp_c = (unsigned char)c;
+	magicbit = (~0UL / 255) * (unsigned char)c;
+	while (i < len % 8)
+		((unsigned char*)b)[i++] = tmp_c;
+	longword_ptr = (unsigned long*)(b + i);
 	while (i < len)
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
+		*longword_ptr++ = magicbit;
+		i += 8;
 	}
 	return (b);
 }

@@ -13,9 +13,22 @@
 NAME = libftprintf.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES= -I./includes -I./libft
-SRCS = srcs/main.c
+CFLAGS = -Wall -Wextra -Werror -g3 # -fsanitize=address
+INCLUDES= -I./includes -I./libft/includes
+LIBS= -L. -L./libft
+SRCS =	srcs/ft_printf_handler.c \
+	srcs/ft_printf_atoi.c \
+	srcs/output.c \
+	srcs/ft_printf_parse_flags.c \
+	srcs/ft_printf_parse_width.c \
+	srcs/ft_printf_parse_precision.c \
+	srcs/ft_printf_parse_length.c \
+	srcs/ft_printf_parse_specifier.c \
+	srcs/ft_printf_specifier_integer.c \
+	srcs/ft_printf_specifier_string.c \
+	srcs/ft_printf_ltoa.c \
+	srcs/ft_printf_integer_format.c \
+	srcs/debug.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 RM = rm -rf
@@ -33,8 +46,11 @@ $(NAME): build_dir $(OBJS)
 build_dir:
 	mkdir -p ./build
 
+test: $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) -o test_run ./test/main.c -lftprintf -lft
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) ./build
 	make -C ./libft/ clean
 
 fclean: clean

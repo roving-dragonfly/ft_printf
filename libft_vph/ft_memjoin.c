@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 01:48:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 21:08:34 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:20:20 by aalvesph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	*ft_memjoin(void *s1, void *s2, size_t l, size_t n)
 		return (NULL);
 	}
 	ft_memcpy_v2(mem, s1, l);
-	ft_memcpy_v2(&mem[l], s2, n);
+	ft_memcpy_v2(mem + l, s2, n);
 	return (mem);
 }
