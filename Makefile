@@ -25,7 +25,8 @@ SRCS =	srcs/ft_printf_handler.c \
 	srcs/ft_printf_parse_length.c \
 	srcs/ft_printf_parse_specifier.c \
 	srcs/ft_printf_specifier_integer.c \
-	srcs/ft_printf_specifier_string.c \
+        srcs/ft_printf_specifier_string.c \
+	srcs/ft_printf_specifier_char.c \
 	srcs/ft_printf_ltoa.c \
 	srcs/ft_printf_integer_format.c \
 	srcs/debug.c

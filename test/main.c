@@ -6,35 +6,54 @@
 /*   By: aalves <aalves@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 20:26:33 by aalves            #+#    #+#             */
-/*   Updated: 2019/07/18 23:18:00 by aalves           ###   ########.fr       */
+/*   Updated: 2019/07/19 04:45:22 by aalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static int		ft_printf_toto(t_printf_output *out, const char *format, ...)
+#define BUFFER_SIZE 4096
+
+static bool		test_char(char **suite, ...)
 {
-	va_list ap;
+	va_list ap, copy;
+	t_printf_output out;
+	int	own, glib;
+	char got[BUFFER_SIZE];
+	char expected[BUFFER_SIZE];
+	bool ret = true;
 
-	va_start(ap, format);
-	return (ft_printf_handler(out, format, ap));
+	va_start(ap, suite);
+	va_copy(copy, ap);
+    out = (t_printf_output){.fn = ft_buffer_out, .buf = got, .i = 0, .max = (size_t)-1U};
+	for (char **test = suite; *test; test++)
+	{
+		own = ft_printf_handler(&out, *test, ap);
+		glib = vsprintf(expected, *test, ap);
+		if (own != glib)
+		{
+			printf("OWN > %d\tGLIB > %d\n<%s>", own, glib, *test);
+			ret = false;
+		}
+		if (ft_strcmp(got, expected))
+        {
+			printf("GOT > <%s>\nEXPECTED > <%s>\n<%s>\n", got, expected, *test);
+			ret = false;
+		}
+        ft_bzero(got, BUFFER_SIZE);
+		ft_bzero(expected, BUFFER_SIZE);
+		out = (t_printf_output){.fn = ft_buffer_out, .buf = got, .i = 0, .max = (size_t)-1U};
+	}
+	return ret;
 }
-
 
 int main()
 {
-	t_printf_output out;
-
-	char *fmt = "lskdjflksdjf \n%56.88s";
-
-	int	own, glib;
-
-	out = (t_printf_output){.fn = ft_std_out, .buf = fmt, .i = 0, .max = (size_t)-1U};
-    //ft_printf_toto(&out ,"integer %056.3hhd\n hexa maj %12.5X\n, hexa std %15.8x\noctal %15.8o\n binary %b, lol %y", 56, 65266, 5484, 5489, 9879);
-	own = ft_printf_toto(&out, fmt, "ayyyy lmao\n");
-	glib = printf(fmt, "ayyyy lmao\n");
-	printf("own > %d\nglib > %d\n", own, glib);
+	char	*test_char_suite[3] = {"Random string",
+								   "toto %c",
+								   NULL};
+ 	if (test_char(test_char_suite, '5'))
+		printf("test char ok\n");
 	return 0;
 }
-

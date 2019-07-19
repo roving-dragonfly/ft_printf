@@ -6,7 +6,7 @@
 /*   By: aalves <aalves@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 03:00:03 by aalves            #+#    #+#             */
-/*   Updated: 2019/07/18 03:03:13 by aalves           ###   ########.fr       */
+/*   Updated: 2019/07/19 04:16:46 by aalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static bool			ft_printf_specifier_error(t_printf_meta *meta, t_printf_output *ou
 
 static void			init_specifier_tab(specifier_fn *tab)
 {
-	tab['b'] = *ft_printf_specifier_integer;
+    tab['b'] = *ft_printf_specifier_integer;
+	tab['c'] = *ft_printf_specifier_char;
     tab['d'] = *ft_printf_specifier_integer;
     tab['i'] = *ft_printf_specifier_integer;
 	tab['o'] = *ft_printf_specifier_integer;

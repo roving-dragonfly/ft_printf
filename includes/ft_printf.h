@@ -6,7 +6,7 @@
 /*   By: aalves <aalves@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 04:22:34 by aalves            #+#    #+#             */
-/*   Updated: 2019/07/18 23:11:22 by aalves           ###   ########.fr       */
+/*   Updated: 2019/07/19 04:17:14 by aalves           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ size_t	ft_reverse_out(t_printf_meta *meta, t_printf_output *out, t_printf_intege
 */
 bool	ft_printf_specifier_integer(t_printf_meta *meta, t_printf_output *out, char **format, va_list ap);
 bool	ft_printf_specifier_string(t_printf_meta *meta, t_printf_output *out, char **format, va_list ap);
+bool	ft_printf_specifier_char(t_printf_meta *meta, t_printf_output *out, char **format, va_list ap);
 /*
 **	Formating
 */
